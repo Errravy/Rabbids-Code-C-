@@ -1,11 +1,11 @@
-public class Rabbids : IControlable
+public class ClawRobot : IControlable
 {
     public Dictionary<Commands, ICommand> _command { get; private set; }
     private float _x;
     private float _y;
     private bool _isSucked;
 
-    public Rabbids()
+    public ClawRobot()
     {
         _x = 0;
         _y = 0;
@@ -41,7 +41,7 @@ public class Rabbids : IControlable
 
     public void GetPosition()
     {
-        Console.WriteLine($"Rabbids is at {_x}, {_y}");
+        Console.WriteLine($"ClawRobot is at {_x}, {_y}");
     }
 
     public bool IsSucked()
