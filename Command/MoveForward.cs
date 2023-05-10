@@ -7,7 +7,7 @@ public class MoveForward : ICommand
     }
     public void Execute()
     {
-        System.Console.WriteLine("Maju maju maju");
+        System.Console.WriteLine("x + 1");
     }
 
     public Commands GetEnum()

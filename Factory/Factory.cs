@@ -48,4 +48,55 @@ public class Factory
                 return null;
         }
     }
+
+    public static IInteractable CreateInteractable(Interactables type)
+    {
+        switch (type)
+        {
+            case Interactables.Button:
+                return new Button();
+            case Interactables.ElectricFence:
+                return new ElectricFence();
+            case Interactables.IdleRabbids:
+                return new IdleRabbids();
+            case Interactables.WashingMachine:
+                return new WashingMachine();
+            default:
+                return null;
+        }
+    }
+
+    public static IControlable CreateControlable(Controlables type)
+    {
+        switch (type)
+        {
+            case Controlables.Rabbids:
+                return new Rabbids();
+            case Controlables.VacuumRobot:
+                return new VacuumRobot();
+            case Controlables.ArmedRabbids:
+                return new ArmedRabbids();
+            case Controlables.ClawRobot:
+                return new ClawRobot();
+            default:
+                return null;
+        }
+    }
+
+    public static ICommand CreateCommands(IControlable obj, Commands type)
+    {
+        switch (type)
+        {
+            case Commands.Forward:
+                return obj.SetCommand(new MoveForward(obj));
+            case Commands.Backward:
+                return obj.SetCommand(new MoveBackward(obj));
+            case Commands.Left:
+                return obj.SetCommand(new TurnLeft(obj));
+            case Commands.Right:
+                return obj.SetCommand(new TurnRight(obj));
+            default:
+                return null;
+        }
+    }
 }

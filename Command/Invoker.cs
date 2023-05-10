@@ -11,7 +11,7 @@ public class Invoker
         _command.Add(command);
     }
 
-    public void ExecuteCommand()
+    public void ExecuteCommands()
     {
         foreach (var command in _command)
         {
