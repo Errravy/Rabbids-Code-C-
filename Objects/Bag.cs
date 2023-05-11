@@ -1,34 +1,36 @@
 public class Bag : IObjects
 {
-    private float _x;
-    private float _y;
+    private int _x;
+    private int _y;
     private bool _isSucked;
+    private Cell _cell;
 
     public Bag()
     {
         _x = 0;
         _y = 0;
         _isSucked = true;
+        _cell = new Cell(_x, _y);
     }
-    public void SetPosition(float x, float y)
+    public void SetPosition(int x, int y)
     {
         _x = x;
         _y = y;
     }
 
-    public void SetPositionX(float x)
+    public void SetPositionX(int x)
     {
         _x = x;
     }
 
-    public void SetPositionY(float y)
+    public void SetPositionY(int y)
     {
         _y = y;
     }
 
-    public void GetPosition()
+    public (int x, int y) GetPosition()
     {
-        Console.WriteLine($"Bag is at {_x}, {_y}");
+        return (_x, _y);
     }
 
     public bool IsSucked()
