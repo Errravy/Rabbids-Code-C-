@@ -9,12 +9,17 @@ public class Grid
 
     public Grid(int widht, int height)
     {
+        InitializeGridAndCell(widht, height);
+        GenerateGrid();
+        RenderGrid();
+    }
+
+    private void InitializeGridAndCell(int widht, int height)
+    {
         this.widht = widht;
         this.height = height;
         grid = new string[widht, height];
         cells = new Dictionary<(int x, int y), Cell>();
-        GenerateGrid();
-        RenderGrid();
     }
 
     private void GenerateGrid()
@@ -31,13 +36,14 @@ public class Grid
         }
     }
 
-    private void RenderGrid()
+    public void RenderGrid()
     {
+        Console.Clear();
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < widht; x++)
             {
-                Console.Write(grid[x, y] + " ");
+                Console.Write(cells[(x, y)].GetCellObj() + " ");
             }
             Console.WriteLine();
         }
