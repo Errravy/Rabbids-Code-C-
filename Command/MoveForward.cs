@@ -1,13 +1,13 @@
 public class MoveForward : ICommand
 {
-    private IObjects _obj;
-    public MoveForward(IObjects obj)
+    private IControlable _cObj;
+    public MoveForward(IControlable cObj)
     {
-        _obj = obj;
+        _cObj = cObj;
     }
     public void Execute()
     {
-        System.Console.WriteLine("Maju maju maju");
+        System.Console.WriteLine("x + 1");
     }
 
     public Commands GetEnum()

@@ -2,13 +2,11 @@
 {
     public static void Main(string[] args)
     {
-        GameManager gameManager = new GameManager();
-        // gameManager.StartGame();
-
-        // Rabbids rabbids = new Rabbids();
-        // Invoker invoker = new Invoker();
-        // rabbids.SetCommand(new MoveForward(rabbids));
-        // invoker.AddCommand(rabbids._command[Commands.Forward]);
-        // invoker.ExecuteCommand();
+        Grid grid = new Grid(10, 3);
+        IObjects bag = new Bag();
+        bag.SetPosition(4, 0);
+        grid.CheckGridPos(4, 0);
+        grid.CheckCell(bag);
+        grid.RenderGrid();
     }
 }

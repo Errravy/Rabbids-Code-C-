@@ -1,7 +1,8 @@
 public interface IObjects
 {
-    void SetPositionX(float x);
-    void SetPositionY(float y);
-    void SetPosition(float x, float y);
-    void GetPosition();
+    bool IsSucked();
+    void SetPositionX(int x);
+    void SetPositionY(int y);
+    void SetPosition(int x, int y);
+    (int x,int y) GetPosition();
 }
