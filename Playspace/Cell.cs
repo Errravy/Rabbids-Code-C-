@@ -4,7 +4,7 @@ public class Cell
     private int y;
     private string cellObj;
 
-    private bool isWalkable;
+    private bool isWalkable = true;
     private const string walkable = "-";
 
     public Cell(int x, int y)
