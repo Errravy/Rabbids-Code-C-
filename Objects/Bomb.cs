@@ -1,5 +1,6 @@
 public class Bomb : IObjects
 {
+    private string objectSymbol = "BO";
     private int _x;
     private int _y;
     private bool _isSucked;
@@ -34,5 +35,10 @@ public class Bomb : IObjects
     public bool IsSucked()
     {
         return _isSucked;
+    }
+
+    public string GetObjectSymbol()
+    {
+        return objectSymbol;
     }
 }

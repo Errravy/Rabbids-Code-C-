@@ -1,5 +1,6 @@
 public class IdleRabbids : IInteractable
 {
+    private string objectSymbol = "IR";
     private int _x;
     private int _y;
     private bool _isSucked;
@@ -33,5 +34,10 @@ public class IdleRabbids : IInteractable
     public bool IsSucked()
     {
         return _isSucked;
+    }
+
+    public string GetObjectSymbol()
+    {
+        return objectSymbol;
     }
 }

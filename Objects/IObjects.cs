@@ -4,5 +4,6 @@ public interface IObjects
     void SetPositionX(int x);
     void SetPositionY(int y);
     void SetPosition(int x, int y);
-    (int x,int y) GetPosition();
+    (int x, int y) GetPosition();
+    string GetObjectSymbol();
 }

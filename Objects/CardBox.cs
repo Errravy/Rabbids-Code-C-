@@ -1,5 +1,6 @@
-public class CardBox : IObjects 
+public class CardBox : IObjects
 {
+    private string objectSymbol = "C";
     private int _x;
     private int _y;
     private bool _isSucked;
@@ -34,5 +35,10 @@ public class CardBox : IObjects
     public bool IsSucked()
     {
         return _isSucked;
+    }
+
+    public string GetObjectSymbol()
+    {
+        return objectSymbol;
     }
 }

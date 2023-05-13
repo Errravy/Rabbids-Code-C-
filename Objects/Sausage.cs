@@ -1,5 +1,6 @@
 public class Sausage : IObjects
 {
+    private string objectSymbol = "S";
     private int _x;
     private int _y;
     private bool _isSucked;
@@ -34,5 +35,10 @@ public class Sausage : IObjects
     public bool IsSucked()
     {
         return _isSucked;
+    }
+
+    public string GetObjectSymbol()
+    {
+        return objectSymbol;
     }
 }

@@ -3,6 +3,25 @@ public class LevelManager
     private List<Level> levelList = new List<Level>();
     private int currentLevelIndex = 0;
 
+    public struct LevelItem
+    {
+        public List<string> commands { get; set; }
+        public List<Object> objects { get; set; }
+
+        public struct Object
+        {
+            public string objectType { get; set; }
+            public string objectEnum { get; set; }
+            public Position position { get; set; }
+
+            public struct Position
+            {
+                public int x { get; set; }
+                public int y { get; set; }
+            }
+        }
+    }
+
     public LevelManager()
     {
         SetupLevels();
@@ -10,11 +29,6 @@ public class LevelManager
 
     public Level GetLevel()
     {
-        if (levelList.Count <= 0)
-        {
-            return new Level("Default");
-        }
-
         return levelList[currentLevelIndex];
     }
 
@@ -30,35 +44,62 @@ public class LevelManager
 
     private void CreateLevel(string levelName)
     {
-        string line;
+        Level newLevel = new Level();
 
-        try
+        LevelItem levelItem = FileReader.Read<LevelItem>(levelName);
+
+        foreach (LevelItem.Object objectItem in levelItem.objects)
         {
-            StreamReader reader = new StreamReader($"{FileReader.relativePath}/{levelName}");
+            bool isControlable = false;
+            IObjects newObject = CreateNewObject(objectItem, out isControlable);
 
-            line = reader.ReadLine();
-            Level newLevel = new Level(levelName);
-
-            while (line != null)
+            if (isControlable)
             {
-                string[] splittedLines = line.Split(" ");
-
-                foreach (string splittedLine in splittedLines)
+                foreach (string command in levelItem.commands)
                 {
-                    string objectName = splittedLine.Split("-")[0];
-                    string objectPosition = splittedLine.Split("-")[1];
-
-
+                    ICommand iCommand = CreateNewCommand((IControlable)newObject, command);
+                    ((IControlable)newObject).SetCommand(iCommand);
                 }
 
-                line = reader.ReadLine();
+                newLevel.SetControlable((IControlable)newObject);
             }
 
-            reader.Close();
+            newLevel.GetGrid().CheckCell(newObject);
         }
-        catch (System.Exception ex)
+
+        levelList.Add(newLevel);
+    }
+
+    private IObjects CreateNewObject(LevelItem.Object iObject, out bool isControlable)
+    {
+        IObjects newObject = Factory.CreateObject((Objects)Enum.Parse(typeof(Objects), ((LevelItem.Object)iObject).objectType));
+        SetObjectPosition(newObject, ((LevelItem.Object)iObject).position);
+
+        if (((LevelItem.Object)iObject).objectEnum == "Controlable")
         {
-            Console.WriteLine("Exception: " + ex.Message);
+            isControlable = true;
         }
+        else
+        {
+            isControlable = false;
+        }
+
+        return newObject;
+    }
+
+    private ICommand CreateNewCommand(IControlable controlable, string command)
+    {
+        ICommand newCommand = Factory.CreateCommands(controlable, (Commands)Enum.Parse(typeof(Commands), command));
+        return newCommand;
+    }
+
+    private void SetObjectPosition(IObjects iObject, LevelItem.Object.Position position)
+    {
+        iObject.SetPosition(position.x, position.y);
+    }
+
+    public void NextLevel()
+    {
+        currentLevelIndex++;
     }
 }

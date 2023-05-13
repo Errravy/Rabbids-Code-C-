@@ -1,5 +1,6 @@
 public class Rabbids : IControlable
 {
+    private string objectSymbol = "R";
     public Dictionary<Commands, ICommand> _command { get; private set; }
     private int _x;
     private int _y;
@@ -47,5 +48,10 @@ public class Rabbids : IControlable
     public bool IsSucked()
     {
         return _isSucked;
+    }
+
+    public string GetObjectSymbol()
+    {
+        return objectSymbol;
     }
 }

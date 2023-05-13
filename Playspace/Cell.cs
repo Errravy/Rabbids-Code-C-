@@ -4,31 +4,38 @@ public class Cell
     private int y;
     private string cellObj;
 
-    // private bool isWalkable;
+    private bool isWalkable;
+    private const string walkable = "-";
+
     public Cell(int x, int y)
     {
         this.x = x;
         this.y = y;
-        cellObj = "0";
+        cellObj = walkable;
     }
 
     public void CheckObject(IObjects obj)
     {
         if (obj.GetPosition().x == x && obj.GetPosition().y == y)
         {
-            // isWalkable = false;
+            isWalkable = false;
             System.Console.WriteLine($"Cell {x} {y} is not walkable because {obj} inside it!");
-            cellObj = "X";
-
+            cellObj = obj.GetObjectSymbol();
         }
         else
         {
-            // isWalkable = true;
+            isWalkable = true;
+            cellObj = walkable;
         }
     }
 
     public string GetCellObj()
     {
         return cellObj;
+    }
+
+    public bool IsWalkable()
+    {
+        return isWalkable;
     }
 }

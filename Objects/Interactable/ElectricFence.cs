@@ -1,5 +1,6 @@
 public class ElectricFence : IInteractable
 {
+    private string objectSymbol = "E";
     private int _x;
     private int _y;
     private bool _isSucked;
@@ -33,5 +34,10 @@ public class ElectricFence : IInteractable
     public bool IsSucked()
     {
         return _isSucked;
+    }
+
+    public string GetObjectSymbol()
+    {
+        return objectSymbol;
     }
 }

@@ -11,7 +11,7 @@ public class Grid
     {
         InitializeGridAndCell(widht, height);
         GenerateGrid();
-        RenderGrid();
+        // RenderGrid();
     }
 
     private void InitializeGridAndCell(int widht, int height)
@@ -64,5 +64,20 @@ public class Grid
     public void CheckGridPos(int x, int y)
     {
         Console.WriteLine(grid[x, y]);
+    }
+
+    public int GetWidth()
+    {
+        return widht;
+    }
+
+    public int GetHeight()
+    {
+        return height;
+    }
+
+    public Dictionary<(int x, int y), Cell> GetCells()
+    {
+        return cells;
     }
 }
