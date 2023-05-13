@@ -11,7 +11,6 @@ public class Grid
     {
         InitializeGridAndCell(widht, height);
         GenerateGrid();
-        // RenderGrid();
     }
 
     private void InitializeGridAndCell(int widht, int height)
@@ -33,19 +32,6 @@ public class Grid
                 // Console.WriteLine(grid[x, y] + " ");
                 cells.Add((x, y), new Cell(x, y));
             }
-        }
-    }
-
-    public void RenderGrid()
-    {
-        Console.Clear();
-        for (int y = 0; y < height; y++)
-        {
-            for (int x = 0; x < widht; x++)
-            {
-                Console.Write(cells[(x, y)].GetCellObj() + " ");
-            }
-            Console.WriteLine();
         }
     }
 
