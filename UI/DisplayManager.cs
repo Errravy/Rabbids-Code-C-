@@ -14,6 +14,8 @@ public class DisplayManager
 
         Grid grid = level.GetGrid();
 
+        grid.CheckCell(level.GetControlable());
+
         int x = 0;
         int y = 0;
 
