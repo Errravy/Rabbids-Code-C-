@@ -44,7 +44,8 @@ public class LevelManager
 
     private void CreateLevel(string levelName)
     {
-        Level newLevel = new Level();
+        Invoker invoker = new Invoker();
+        Level newLevel = new Level(invoker);
 
         LevelItem levelItem = FileReader.Read<LevelItem>(levelName);
 

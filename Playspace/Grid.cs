@@ -7,6 +7,9 @@ public class Grid
     private string[,] grid;
     private Dictionary<(int x, int y), Cell> cells;
 
+    private Cell previousCell;
+    private IObjects previousObject;
+
     public Grid(int widht, int height)
     {
         InitializeGridAndCell(widht, height);
@@ -37,6 +40,18 @@ public class Grid
 
     public void CheckCell(IObjects obj)
     {
+        if (previousCell == null)
+        {
+            previousCell = cells[obj.GetPosition()];
+            previousObject = obj;
+        }
+        else
+        {
+            previousCell.CheckObject(previousObject);
+            previousCell = cells[obj.GetPosition()];
+            previousObject = obj;
+        }
+
         if (obj.GetPosition().x < widht && obj.GetPosition().y < height)
         {
             cells[obj.GetPosition()].CheckObject(obj);

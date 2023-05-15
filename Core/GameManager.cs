@@ -24,15 +24,27 @@ public class GameManager
         {
             DisplayManager.RenderLevel(currentLevel);
             currentLevel.ShowAvailableMoves();
-            var move = InputManager.GetMove();
+            int move = InputManager.GetMove();
 
             if (move == 1)
             {
-                currentLevel.GetControlable().SetPosition(currentLevel.GetControlable().GetPosition().x, currentLevel.GetControlable().GetPosition().y - 1);
+                currentLevel.GetInvoker().AddCommand(currentLevel.GetControlable().GetCommand(Commands.Left));
             }
             else if (move == 2)
             {
-                currentLevel.GetControlable().SetPosition(currentLevel.GetControlable().GetPosition().x, currentLevel.GetControlable().GetPosition().y + 1);
+                currentLevel.GetInvoker().AddCommand(currentLevel.GetControlable().GetCommand(Commands.Right));
+            }
+            else if (move == 3)
+            {
+                currentLevel.GetInvoker().AddCommand(currentLevel.GetControlable().GetCommand(Commands.Forward));
+            }
+            else if (move == 4)
+            {
+                currentLevel.GetInvoker().AddCommand(currentLevel.GetControlable().GetCommand(Commands.Backward));
+            }
+            else if (move == 5)
+            {
+                currentLevel.GetInvoker().ExecuteCommands();
             }
 
             if (currentLevel.IsCompleted())

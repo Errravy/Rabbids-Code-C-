@@ -8,13 +8,13 @@ public class InputManager
         {
             case ConsoleKey.A:
                 return 1;
-            case ConsoleKey.B:
+            case ConsoleKey.D:
                 return 2;
-            case ConsoleKey.NumPad3:
+            case ConsoleKey.W:
                 return 3;
-            case ConsoleKey.NumPad4:
+            case ConsoleKey.S:
                 return 4;
-            case ConsoleKey.NumPad5:
+            case ConsoleKey.Spacebar:
                 return 5;
             case ConsoleKey.NumPad6:
                 return 6;
