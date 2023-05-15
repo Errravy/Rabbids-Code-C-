@@ -2,12 +2,15 @@ public class LevelManager
 {
     private List<Level> levelList = new List<Level>();
     private int currentLevelIndex = 0;
+    private const string LEVEL_FOLDER_PATH = "Levels";
 
     public struct LevelItem
     {
+        public string levelName { get; set; }
         public List<string> commands { get; set; }
         public List<Object> objects { get; set; }
         public List<Position> blankCells { get; set; }
+        public GridSize gridSize { get; set; }
 
         public struct Object
         {
@@ -21,6 +24,12 @@ public class LevelManager
         {
             public int x { get; set; }
             public int y { get; set; }
+        }
+
+        public struct GridSize
+        {
+            public int width { get; set; }
+            public int height { get; set; }
         }
     }
 
@@ -36,7 +45,7 @@ public class LevelManager
 
     public void SetupLevels()
     {
-        FileInfo[] fileInfos = FileReader.GetAllLevelFiles();
+        FileInfo[] fileInfos = FileHandler.GetAllLevelFiles(LEVEL_FOLDER_PATH);
 
         foreach (FileInfo fileInfo in fileInfos)
         {
@@ -46,10 +55,10 @@ public class LevelManager
 
     private void CreateLevel(string levelName)
     {
-        Invoker invoker = new Invoker();
-        Level newLevel = new Level(invoker);
+        LevelItem levelItem = FileHandler.ReadFromJson<LevelItem>($"{LEVEL_FOLDER_PATH}/{levelName}");
 
-        LevelItem levelItem = FileReader.Read<LevelItem>(levelName);
+        Invoker invoker = new Invoker();
+        Level newLevel = new Level(levelItem.levelName, levelItem.gridSize.width, levelItem.gridSize.height, invoker);
 
         foreach (LevelItem.Position cell in levelItem.blankCells)
         {

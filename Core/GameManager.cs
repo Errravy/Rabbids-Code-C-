@@ -2,7 +2,6 @@ public class GameManager
 {
     public static GameManager Instance { get; private set; }
     private GameState gameState;
-
     private Level currentLevel;
 
     public GameManager()
@@ -45,6 +44,7 @@ public class GameManager
             else if (move == 5)
             {
                 currentLevel.GetInvoker().ExecuteCommands();
+                GameDataManager.SaveGame(currentLevel);
             }
 
             if (currentLevel.IsCompleted())

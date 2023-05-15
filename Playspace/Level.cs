@@ -1,14 +1,17 @@
 public class Level
 {
+    private string levelName;
     private Grid grid;
     private Invoker invoker;
     private IControlable controlable;
+    private int score;
 
     private bool isCompleted = false;
 
-    public Level(Invoker invoker)
+    public Level(string levelName, int width, int height, Invoker invoker)
     {
-        grid = new Grid(6, 10);
+        grid = new Grid(width, height);
+        this.levelName = levelName;
         this.invoker = invoker;
     }
 
@@ -17,9 +20,19 @@ public class Level
         return grid;
     }
 
+    public string GetLevelName()
+    {
+        return levelName;
+    }
+
     public Invoker GetInvoker()
     {
         return invoker;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 
     public void ShowAvailableMoves()
