@@ -2,6 +2,7 @@ public class Cell
 {
     private int x;
     private int y;
+    private IObjects obj;
     private string cellObj;
 
     private bool isWalkable = true;
@@ -12,6 +13,7 @@ public class Cell
     {
         this.x = x;
         this.y = y;
+        obj = null;
         cellObj = walkable;
     }
 
@@ -21,11 +23,13 @@ public class Cell
         {
             isWalkable = false;
             System.Console.WriteLine($"Cell {x} {y} is not walkable because {obj} inside it!");
+            this.obj = obj;
             cellObj = obj.GetObjectSymbol();
         }
         else
         {
             isWalkable = true;
+            this.obj = null;
             cellObj = walkable;
         }
     }
@@ -39,6 +43,11 @@ public class Cell
     public string GetCellObj()
     {
         return cellObj;
+    }
+
+    public IObjects GetObject()
+    {
+        return obj;
     }
 
     public bool IsWalkable()
