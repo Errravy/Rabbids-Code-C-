@@ -5,12 +5,17 @@ public class DisplayManager
     #region RenderColors
     private static ConsoleColor redColor = ConsoleColor.Red;
     private static ConsoleColor greenColor = ConsoleColor.Green;
+    private static ConsoleColor blueColor = ConsoleColor.Blue;
     private static ConsoleColor defaultColor = Console.BackgroundColor;
     #endregion
 
     public static void RenderLevel(Level level)
     {
-        Console.Clear();
+        // TODO: Create display direction
+        // TODO: If 2 object at the same cell
+        // TODO: Blank cell
+        // TODO: Blocked cell
+        // Console.Clear();
 
         Grid grid = level.GetGrid();
 
@@ -47,9 +52,18 @@ public class DisplayManager
                     }
                     else
                     {
-                        Console.BackgroundColor = redColor;
-                        Console.Write("       ");
-                        Console.BackgroundColor = defaultColor;
+                        if (currentCell.IsBlocked())
+                        {
+                            Console.BackgroundColor = defaultColor;
+                            Console.Write("       ");
+                            Console.BackgroundColor = defaultColor;
+                        }
+                        else
+                        {
+                            Console.BackgroundColor = redColor;
+                            Console.Write("       ");
+                            Console.BackgroundColor = defaultColor;
+                        }
                     }
                     x++;
                 }
@@ -73,9 +87,18 @@ public class DisplayManager
                     }
                     else
                     {
-                        Console.BackgroundColor = redColor;
-                        Console.Write("   " + currentCell.GetCellObj() + "   ");
-                        Console.BackgroundColor = defaultColor;
+                        if (currentCell.IsBlocked())
+                        {
+                            Console.BackgroundColor = defaultColor;
+                            Console.Write("       ");
+                            Console.BackgroundColor = defaultColor;
+                        }
+                        else
+                        {
+                            Console.BackgroundColor = redColor;
+                            Console.Write("   " + currentCell.GetCellObj() + "   ");
+                            Console.BackgroundColor = defaultColor;
+                        }
                     }
                     x++;
                 }
@@ -99,9 +122,18 @@ public class DisplayManager
                     }
                     else
                     {
-                        Console.BackgroundColor = redColor;
-                        Console.Write("       ");
-                        Console.BackgroundColor = defaultColor;
+                        if (currentCell.IsBlocked())
+                        {
+                            Console.BackgroundColor = defaultColor;
+                            Console.Write("       ");
+                            Console.BackgroundColor = defaultColor;
+                        }
+                        else
+                        {
+                            Console.BackgroundColor = redColor;
+                            Console.Write("       ");
+                            Console.BackgroundColor = defaultColor;
+                        }
                     }
                     x++;
                 }

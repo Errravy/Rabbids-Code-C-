@@ -6,6 +6,7 @@ public class Cell
 
     private bool isWalkable = true;
     private const string walkable = "-";
+    private const string blank = " ";
 
     public Cell(int x, int y)
     {
@@ -29,6 +30,12 @@ public class Cell
         }
     }
 
+    public void SetToBlankCell()
+    {
+        isWalkable = false;
+        cellObj = blank;
+    }
+
     public string GetCellObj()
     {
         return cellObj;
@@ -37,5 +44,10 @@ public class Cell
     public bool IsWalkable()
     {
         return isWalkable;
+    }
+
+    public bool IsBlocked()
+    {
+        return cellObj == blank;
     }
 }

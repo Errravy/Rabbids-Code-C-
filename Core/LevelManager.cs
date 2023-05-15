@@ -7,6 +7,7 @@ public class LevelManager
     {
         public List<string> commands { get; set; }
         public List<Object> objects { get; set; }
+        public List<Position> blankCells { get; set; }
 
         public struct Object
         {
@@ -14,11 +15,12 @@ public class LevelManager
             public string objectEnum { get; set; }
             public Position position { get; set; }
 
-            public struct Position
-            {
-                public int x { get; set; }
-                public int y { get; set; }
-            }
+        }
+
+        public struct Position
+        {
+            public int x { get; set; }
+            public int y { get; set; }
         }
     }
 
@@ -48,6 +50,11 @@ public class LevelManager
         Level newLevel = new Level(invoker);
 
         LevelItem levelItem = FileReader.Read<LevelItem>(levelName);
+
+        foreach (LevelItem.Position cell in levelItem.blankCells)
+        {
+            newLevel.GetGrid().GetCells()[(cell.x, cell.y)].SetToBlankCell();
+        }
 
         foreach (LevelItem.Object objectItem in levelItem.objects)
         {
@@ -94,7 +101,7 @@ public class LevelManager
         return newCommand;
     }
 
-    private void SetObjectPosition(IObjects iObject, LevelItem.Object.Position position)
+    private void SetObjectPosition(IObjects iObject, LevelItem.Position position)
     {
         iObject.SetPosition(position.x, position.y);
     }
