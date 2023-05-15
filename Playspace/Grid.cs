@@ -32,7 +32,6 @@ public class Grid
             {
                 temp++;
                 grid[x, y] = temp.ToString();
-                // Console.WriteLine(grid[x, y] + " ");
                 cells.Add((x, y), new Cell(x, y));
             }
         }

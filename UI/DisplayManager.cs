@@ -19,11 +19,11 @@ public class DisplayManager
         int x = 0;
         int y = 0;
 
-        for (int i = 0; i < grid.GetWidth() * 4; i++)
+        for (int i = 0; i < grid.GetHeight() * 4; i++)
         {
             if (i % 4 == 0)
             {
-                for (int j = 0; j < grid.GetHeight(); j++)
+                for (int j = 0; j < grid.GetWidth(); j++)
                 {
                     Console.Write("|");
                     Console.Write("=======");
@@ -33,7 +33,7 @@ public class DisplayManager
 
             if (i % 4 == 1)
             {
-                for (int j = 0; j < grid.GetHeight(); j++)
+                for (int j = 0; j < grid.GetWidth(); j++)
                 {
                     Cell currentCell = grid.GetCells()[(x, y)];
 
@@ -51,15 +51,15 @@ public class DisplayManager
                         Console.Write("       ");
                         Console.BackgroundColor = defaultColor;
                     }
-                    y++;
+                    x++;
                 }
                 Console.Write("|");
-                y = 0;
+                x = 0;
             }
 
             if (i % 4 == 2)
             {
-                for (int j = 0; j < grid.GetHeight(); j++)
+                for (int j = 0; j < grid.GetWidth(); j++)
                 {
                     Cell currentCell = grid.GetCells()[(x, y)];
 
@@ -77,15 +77,15 @@ public class DisplayManager
                         Console.Write("   " + currentCell.GetCellObj() + "   ");
                         Console.BackgroundColor = defaultColor;
                     }
-                    y++;
+                    x++;
                 }
                 Console.Write("|");
-                y = 0;
+                x = 0;
             }
 
             if (i % 4 == 3)
             {
-                for (int j = 0; j < grid.GetHeight(); j++)
+                for (int j = 0; j < grid.GetWidth(); j++)
                 {
                     Cell currentCell = grid.GetCells()[(x, y)];
 
@@ -103,17 +103,18 @@ public class DisplayManager
                         Console.Write("       ");
                         Console.BackgroundColor = defaultColor;
                     }
-                    y++;
+                    x++;
                 }
                 Console.Write("|");
-                y = 0;
-                x++;
+                x = 0;
+                y++;
             }
 
             Console.WriteLine();
         }
 
-        for (int j = 0; j < grid.GetHeight(); j++)
+
+        for (int j = 0; j < grid.GetWidth(); j++)
         {
             Console.Write("|");
             Console.Write("=======");

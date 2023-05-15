@@ -1,6 +1,5 @@
 public class MoveForward : ICommand
 {
-    private Directions directions;
     private IControlable _cObj;
     public MoveForward(IControlable cObj)
     {
@@ -18,7 +17,7 @@ public class MoveForward : ICommand
 
     private void MoveByDirection()
     {
-        switch (directions)
+        switch (_cObj.GetDirection())
         {
             case Directions.Up:
                 _cObj.SetPositionY(_cObj.GetPosition().y - 1);

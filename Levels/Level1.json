@@ -1,5 +1,5 @@
 {
-    "commands": ["Forward", "Backward"],
+    "commands": ["Forward", "Backward", "Left", "Right"],
     "objects": [
         {
             "objectEnum": "Controlable",

@@ -1,7 +1,6 @@
 public class MoveBackward : ICommand
 {
     private IControlable _cObj;
-    Directions directions;
     public MoveBackward(IControlable cObj)
     {
         _cObj = cObj;
@@ -18,7 +17,7 @@ public class MoveBackward : ICommand
 
     private void MoveByDirection()
     {
-        switch (directions)
+        switch (_cObj.GetDirection())
         {
             case Directions.Up:
                 _cObj.SetPositionY(_cObj.GetPosition().y + 1);

@@ -1,6 +1,5 @@
 public class TurnRight : ICommand
 {
-    private Directions directions;
     private IControlable _cObj;
     public TurnRight(IControlable cObj)
     {
@@ -18,7 +17,7 @@ public class TurnRight : ICommand
 
     private void Rotate()
     {
-        switch (directions)
+        switch (_cObj.GetDirection())
         {
             case Directions.Up:
                 _cObj.SetDirection(0);

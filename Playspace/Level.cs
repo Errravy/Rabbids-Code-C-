@@ -8,7 +8,7 @@ public class Level
 
     public Level(Invoker invoker)
     {
-        grid = new Grid(10, 10);
+        grid = new Grid(6, 10);
         this.invoker = invoker;
     }
 
